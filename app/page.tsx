@@ -13,39 +13,71 @@ import {
   ArrowRight,
   MapPin,
   Clock,
-  Phone
+  Phone,
+  Play,
+  ChevronRight
 } from "lucide-react";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import { YouTubeVideo } from '@/components/YouTubeVideo';
 
 export default function Home() {
   return (
     <main>
-      {/* Hero Section with Carousel Background */}
-      <section className="relative min-h-[600px] h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[600px] h-screen">
         <HeroCarousel />
-        <div className="relative z-[2] text-center text-white px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-[1.2] sm:leading-tight">
-            Formando os Educadores<br className="hidden sm:block" /> do Futuro
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-xl sm:max-w-2xl mx-auto leading-relaxed opacity-90">
-            O Curso de Agregação Pedagógica do FC-Saber é reconhecido pela<br className="hidden sm:block" /> excelência 
-            e inovação na formação de profissionais da educação.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-6 sm:px-0">
-            <Button 
-              size="lg" 
-              className="bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto text-sm sm:text-base py-6 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all"
-            >
-              Inscreva-se Agora
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 w-full sm:w-auto text-sm sm:text-base py-6 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all"
-            >
-              Conheça o Programa
-            </Button>
+      </section>
+
+      {/* Video Section */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/50" />
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
+          <div className="absolute top-0 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
+          <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-600 mb-4">
+                <Play className="w-4 h-4 mr-2" />
+                Metodologia Exclusiva
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+              Conheça Nossa Metodologia
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Descubra como nossa abordagem inovadora está transformando 
+              a formação de educadores em todo o país.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto relative">
+            {/* Video Container */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
+              <YouTubeVideo 
+                videoId="oe823QDBUic"
+                className="shadow-[0_20px_50px_rgba(8,_112,_184,_0.2)]"
+              />
+            </div>
+
+            {/* Call to action below video */}
+            <div className="mt-12 text-center">
+              <p className="text-gray-600 mb-4">
+                Quer saber mais sobre nossa metodologia?
+              </p>
+              <Button 
+                variant="outline"
+                className="inline-flex items-center gap-2 text-blue-600 border-blue-200 hover:bg-blue-50 transition-all duration-300"
+              >
+                Agende uma Visita
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
