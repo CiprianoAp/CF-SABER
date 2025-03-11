@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Menu, X, Mail, Phone, MapPin, Clock, GraduationCap, BookOpen, Users, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { LanguageSelector } from '@/components/LanguageSelector';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { SocialIcons } from '@/components/SocialIcons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -42,15 +45,18 @@ export default function RootLayout({
                 +351 123 456 789
               </span>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2" />
-                Lisboa, Portugal
-              </span>
-              <span className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                Seg-Sex: 9:00 - 18:00
-              </span>
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-4">
+                <span className="flex items-center">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  Lisboa, Portugal
+                </span>
+                <span className="flex items-center">
+                  <Clock className="h-4 w-4 mr-2" />
+                  Seg-Sex: 9:00 - 18:00
+                </span>
+              </div>
+              <SocialIcons iconSize={18} variant="white" />
             </div>
           </div>
         </div>
@@ -132,11 +138,14 @@ export default function RootLayout({
                 </NavigationMenuList>
               </NavigationMenu>
 
-              <Button 
-                className="bg-blue-600 hover:bg-blue-700 transition-colors"
-              >
-                Área do Aluno
-              </Button>
+              <div className="flex items-center gap-4">
+                <LanguageSelector />
+                <Button 
+                  className="bg-blue-600 hover:bg-blue-700 transition-colors"
+                >
+                  Área do Aluno
+                </Button>
+              </div>
             </div>
 
             {/* Mobile Navigation */}
@@ -165,6 +174,14 @@ export default function RootLayout({
                         Lisboa, Portugal
                       </p>
                     </div>
+                  </div>
+                  <div className="px-2 mb-4">
+                    <h4 className="text-sm font-medium text-gray-500 mb-2">Redes Sociais</h4>
+                    <SocialIcons />
+                  </div>
+                  <div className="flex items-center justify-between px-2 mb-2">
+                    <span className="text-sm text-gray-500">Idioma</span>
+                    <LanguageSelector />
                   </div>
                   <Link
                     href="#"
@@ -203,9 +220,10 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4">FC-Saber</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 mb-6">
                 Excelência em formação pedagógica desde 2025.
               </p>
+              <SocialIcons variant="white" className="mt-4" />
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
@@ -230,6 +248,7 @@ export default function RootLayout({
             <p>&copy; 2025 FC-Saber. Todos os direitos reservados.</p>
           </div>
         </footer>
+        <WhatsAppButton />
       </body>
     </html>
   );
