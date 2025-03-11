@@ -22,21 +22,28 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section with Carousel Background */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[600px] h-screen flex items-center justify-center overflow-hidden">
         <HeroCarousel />
-        <div className="relative z-[2] text-center text-white px-4 max-w-5xl">
-          <h1 className="text-6xl font-bold mb-6 leading-tight">
-            Formando os Educadores do Futuro
+        <div className="relative z-[2] text-center text-white px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-[1.2] sm:leading-tight">
+            Formando os Educadores<br className="hidden sm:block" /> do Futuro
           </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            O Curso de Agregação Pedagógica do FC-Saber é reconhecido pela excelência 
+          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-xl sm:max-w-2xl mx-auto leading-relaxed opacity-90">
+            O Curso de Agregação Pedagógica do FC-Saber é reconhecido pela<br className="hidden sm:block" /> excelência 
             e inovação na formação de profissionais da educação.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-6 sm:px-0">
+            <Button 
+              size="lg" 
+              className="bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto text-sm sm:text-base py-6 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all"
+            >
               Inscreva-se Agora
             </Button>
-            <Button size="lg" variant="outline" className="bg-white text-blue-600 border-white hover:bg-gray-100">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 w-full sm:w-auto text-sm sm:text-base py-6 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all"
+            >
               Conheça o Programa
             </Button>
           </div>
@@ -44,24 +51,24 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <p className="text-4xl font-bold text-blue-600 mb-2">98%</p>
-              <p className="text-gray-600">Taxa de Aprovação</p>
+      <section className="py-12 sm:py-16 md:py-20 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">98%</p>
+              <p className="text-sm sm:text-base text-gray-600">Taxa de Aprovação</p>
             </div>
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <p className="text-4xl font-bold text-blue-600 mb-2">2000+</p>
-              <p className="text-gray-600">Alunos Formados</p>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">2000+</p>
+              <p className="text-sm sm:text-base text-gray-600">Alunos Formados</p>
             </div>
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <p className="text-4xl font-bold text-blue-600 mb-2">50+</p>
-              <p className="text-gray-600">Professores PhD</p>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">50+</p>
+              <p className="text-sm sm:text-base text-gray-600">Professores PhD</p>
             </div>
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <p className="text-4xl font-bold text-blue-600 mb-2">15</p>
-              <p className="text-gray-600">Anos de Excelência</p>
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">15</p>
+              <p className="text-sm sm:text-base text-gray-600">Anos de Excelência</p>
             </div>
           </div>
         </div>
