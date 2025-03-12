@@ -84,8 +84,8 @@ export function HeroCarousel() {
                 <Button 
                   variant="default" 
                   size="lg"
-                  className="w-full bg-white text-black hover:bg-white/90 transition-all duration-300 
-                           text-base px-6 py-5 rounded-full shadow-lg hover:shadow-xl 
+                  className="w-full bg-[#FFD700] text-[#4B0082] hover:bg-[#FFD700]/90 transition-all duration-300 
+                           text-base px-6 py-5 rounded-full shadow-[0_4px_14px_0_rgba(75,0,130,0.2)] hover:shadow-[0_6px_20px_rgba(75,0,130,0.3)] 
                            hover:scale-105 font-medium"
                 >
                   {firstSlide.cta.primary}
@@ -94,10 +94,10 @@ export function HeroCarousel() {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="w-full border-2 border-white text-white hover:bg-white/10 
+                  className="w-full border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#4B0082]/30 
                            transition-all duration-300 text-base px-6 py-5 rounded-full 
-                           shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm 
-                           font-medium"
+                           shadow-[0_4px_14px_0_rgba(255,215,0,0.2)] hover:shadow-[0_6px_20px_rgba(255,215,0,0.3)]
+                           hover:scale-105 backdrop-blur-sm font-medium"
                 >
                   {firstSlide.cta.secondary}
                 </Button>
@@ -126,8 +126,8 @@ export function HeroCarousel() {
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
-            return `<span class="${className} relative w-12 h-1 bg-white/30 hover:bg-white/70 transition-all duration-300 rounded-full overflow-hidden">
-              <span class="absolute inset-0 bg-white transform origin-left transition-transform duration-500 ${index === activeIndex ? 'scale-x-100' : 'scale-x-0'}"></span>
+            return `<span class="${className} relative w-12 h-1 bg-[#4B0082]/30 hover:bg-[#4B0082]/50 transition-all duration-300 rounded-full overflow-hidden">
+              <span class="absolute inset-0 bg-[#FFD700] transform origin-left transition-transform duration-500 ${index === activeIndex ? 'scale-x-100' : 'scale-x-0'}"></span>
             </span>`;
           },
         }}
@@ -159,8 +159,8 @@ export function HeroCarousel() {
                     <Button 
                       variant="default" 
                       size="lg"
-                      className="bg-white text-black hover:bg-white/90 transition-all duration-300 
-                               text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl 
+                      className="bg-[#FFD700] text-[#4B0082] hover:bg-[#FFD700]/90 transition-all duration-300 
+                               text-lg px-8 py-6 rounded-full shadow-[0_4px_14px_0_rgba(75,0,130,0.2)] hover:shadow-[0_6px_20px_rgba(75,0,130,0.3)]
                                hover:scale-105 font-medium"
                     >
                       {slide.cta.primary}
@@ -169,10 +169,10 @@ export function HeroCarousel() {
                     <Button 
                       variant="outline" 
                       size="lg"
-                      className="border-2 border-white text-white hover:bg-white/10 
+                      className="border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#4B0082]/30 
                                transition-all duration-300 text-lg px-8 py-6 rounded-full 
-                               shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm 
-                               font-medium"
+                               shadow-[0_4px_14px_0_rgba(255,215,0,0.2)] hover:shadow-[0_6px_20px_rgba(255,215,0,0.3)]
+                               hover:scale-105 backdrop-blur-sm font-medium"
                     >
                       {slide.cta.secondary}
                     </Button>
@@ -184,11 +184,11 @@ export function HeroCarousel() {
         ))}
 
         {/* Custom Navigation Buttons */}
-        <div className="swiper-button-prev !text-white !w-14 !h-14 !bg-black/30 rounded-full 
-                      backdrop-blur-sm transition-all duration-300 hover:!bg-black/50
+        <div className="swiper-button-prev !text-[#FFD700] !w-14 !h-14 !bg-[#4B0082]/50 rounded-full 
+                      backdrop-blur-sm transition-all duration-300 hover:!bg-[#4B0082]/70
                       after:!text-2xl hover:scale-110 !opacity-50 hover:!opacity-100"></div>
-        <div className="swiper-button-next !text-white !w-14 !h-14 !bg-black/30 rounded-full 
-                      backdrop-blur-sm transition-all duration-300 hover:!bg-black/50
+        <div className="swiper-button-next !text-[#FFD700] !w-14 !h-14 !bg-[#4B0082]/50 rounded-full 
+                      backdrop-blur-sm transition-all duration-300 hover:!bg-[#4B0082]/70
                       after:!text-2xl hover:scale-110 !opacity-50 hover:!opacity-100"></div>
       </Swiper>
     </div>
