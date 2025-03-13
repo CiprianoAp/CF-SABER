@@ -19,53 +19,53 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 271 81% 25%;
+    --foreground: #800080; /* lilla */
     --card: 0 0% 100%;
-    --card-foreground: 271 81% 25%;
+    --card-foreground: #800080; /* lilla */
     --popover: 0 0% 100%;
-    --popover-foreground: 271 81% 25%;
-    --primary: 271 81% 25%;
-    --primary-foreground: 47 100% 50%;
-    --secondary: 47 100% 50%;
-    --secondary-foreground: 271 81% 25%;
+    --popover-foreground: #800080; /* lilla */
+    --primary: #800080; /* lilla */
+    --primary-foreground: #FFFF00; /* amarelo */
+    --secondary: #FFFF00; /* amarelo */
+    --secondary-foreground: #800080; /* lilla */
     --muted: 271 81% 97%;
     --muted-foreground: 271 81% 45%;
-    --accent: 47 100% 50%;
-    --accent-foreground: 271 81% 25%;
+    --accent: #FFFF00; /* amarelo */
+    --accent-foreground: #800080; /* lilla */
     --destructive: 271 81% 45%;
-    --destructive-foreground: 47 100% 50%;
+    --destructive-foreground: #FFFF00; /* amarelo */
     --border: 271 81% 90%;
     --input: 271 81% 90%;
-    --ring: 271 81% 25%;
+    --ring: #800080; /* lilla */
     --chart-1: 271 81% 45%;
-    --chart-2: 47 100% 50%;
+    --chart-2: #FFFF00; /* amarelo */
     --chart-3: 271 81% 35%;
-    --chart-4: 47 100% 60%;
+    --chart-4: #FFFF00; /* amarelo */
     --chart-5: 271 81% 55%;
     --radius: 0.5rem;
   }
   .dark {
-    --background: 271 81% 25%;
-    --foreground: 47 100% 50%;
-    --card: 271 81% 25%;
-    --card-foreground: 47 100% 50%;
-    --popover: 271 81% 25%;
-    --popover-foreground: 47 100% 50%;
-    --primary: 47 100% 50%;
-    --primary-foreground: 271 81% 25%;
+    --background: #800080; /* lilla */
+    --foreground: #FFFF00; /* amarelo */
+    --card: #800080; /* lilla */
+    --card-foreground: #FFFF00; /* amarelo */
+    --popover: #800080; /* lilla */
+    --popover-foreground: #FFFF00; /* amarelo */
+    --primary: #FFFF00; /* amarelo */
+    --primary-foreground: #800080; /* lilla */
     --secondary: 271 81% 35%;
-    --secondary-foreground: 47 100% 50%;
+    --secondary-foreground: #FFFF00; /* amarelo */
     --muted: 271 81% 35%;
     --muted-foreground: 47 100% 80%;
-    --accent: 47 100% 50%;
-    --accent-foreground: 271 81% 25%;
+    --accent: #FFFF00; /* amarelo */
+    --accent-foreground: #800080; /* lilla */
     --destructive: 271 81% 45%;
-    --destructive-foreground: 47 100% 50%;
+    --destructive-foreground: #FFFF00; /* amarelo */
     --border: 271 81% 35%;
     --input: 271 81% 35%;
-    --ring: 47 100% 50%;
+    --ring: #FFFF00; /* amarelo */
     --chart-1: 271 81% 60%;
-    --chart-2: 47 100% 55%;
+    --chart-2: #FFFF00; /* amarelo */
     --chart-3: 271 81% 45%;
     --chart-4: 47 100% 65%;
     --chart-5: 271 81% 50%;
@@ -308,11 +308,4 @@
 
 .animation-delay-400 {
   animation-delay: 0.4s;
-}
-
-/* Use 100svh for mobile viewports */
-@supports (height: 100svh) {
-  .h-[100svh] {
-    height: 100svh;
-  }
 }

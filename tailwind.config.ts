@@ -20,6 +20,8 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        lilla: '#800080',
+        amarelo: '#FFFF00',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

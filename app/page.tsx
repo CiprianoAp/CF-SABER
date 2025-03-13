@@ -15,7 +15,8 @@ import {
   Clock,
   Phone,
   Play,
-  ChevronRight
+  ChevronRight,
+  Eye
 } from "lucide-react";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
@@ -29,10 +30,61 @@ export default function Home() {
         <HeroCarousel />
       </section>
 
+      {/* Missão, Visão, Valores Section */}
+      <section className="py-12 bg-purple-600 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-yellow-500 sm:text-4xl">
+              Conheça o que nos guia.
+            </h2>
+          </div>
+          <div className="mt-10">
+            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
+              <div className="relative">
+                <dt>
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md text-white bg-yellow-500">
+                    {/* Icon */}
+                    <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <p className="ml-16 text-lg leading-6 font-medium text-white">Missão</p>
+                </dt>
+                <dd className="mt-2 ml-16 text-base text-yellow-500">Formar educadores inovadores e comprometidos com a excelência no ensino.</dd>
+              </div>
+
+              <div className="relative">
+                <dt>
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md text-white bg-yellow-500">
+                    {/* Icon */}
+                    <Eye className="h-6 w-6" />
+                  </div>
+                  <p className="ml-16 text-lg leading-6 font-medium text-white">Visão</p>
+                </dt>
+                <dd className="mt-2 ml-16 text-base text-yellow-500">Ser referência nacional em educação, reconhecida pela inovação e impacto social.</dd>
+              </div>
+
+              <div className="relative">
+                <dt>
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md text-white bg-yellow-500">
+                    {/* Icon */}
+                    <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="ml-16 text-lg leading-6 font-medium text-white">Valores</p>
+                </dt>
+                <dd className="mt-2 ml-16 text-base text-yellow-500">Ética, compromisso, inovação, excelência e respeito à diversidade.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
       {/* Video Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-24 md:py-32 overflow-hidden bg-yellow-500">
         {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-white to-yellow-50/50" />
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
           <div className="absolute top-0 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
@@ -42,15 +94,15 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-600 mb-4">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-600 text-yellow-500 mb-4">
                 <Play className="w-4 h-4 mr-2" />
                 Metodologia Exclusiva
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-600 to-purple-600 text-transparent bg-clip-text">
               Conheça Nossa Metodologia
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-purple-600  max-w-2xl mx-auto leading-relaxed">
               Descubra como nossa abordagem inovadora está transformando 
               a formação de educadores em todo o país.
             </p>
@@ -72,7 +124,7 @@ export default function Home() {
               </p>
               <Button 
                 variant="outline"
-                className="inline-flex items-center gap-2 text-blue-600 border-blue-200 hover:bg-blue-50 transition-all duration-300"
+                className="inline-flex items-center gap-2 text-purple-600  border-blue-200 hover:bg-blue-50 transition-all duration-300"
               >
                 Agende uma Visita
                 <ChevronRight className="w-4 h-4" />
@@ -174,7 +226,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Endereço</h3>
-                  <p className="text-gray-600">Av. Principal, 1000 - Lisboa, Portugal</p>
+                  <p className="text-gray-600">Avenida Samora Machel, Município de Talatona, Luanda-Angola</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -192,8 +244,8 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Contato</h3>
-                  <p className="text-gray-600">+351 123 456 789</p>
-                  <p className="text-gray-600">contato@fc-saber.pt</p>
+                  <p className="text-gray-600">+244 936321139</p>
+                  <p className="text-gray-600">infor-cfsaber@gmail.com</p>
                 </div>
               </div>
             </div>
