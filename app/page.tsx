@@ -120,13 +120,13 @@ export default function Home() {
             {/* Call to action below video */}
             <div className="mt-12 text-center">
               <p className="text-gray-600 mb-4">
-                Quer saber mais sobre nossa metodologia?
+                Quer saber mais sobre nossos cursos?
               </p>
               <Button 
                 variant="outline"
-                className="inline-flex items-center gap-2 text-purple-600  border-blue-200 hover:bg-blue-50 transition-all duration-300"
+                className="inline-flex items-center text-yellow-400 gap-2 bg-purple-600  border-blue-200 hover:bg-purple-700 transition-all duration-300"
               >
-                Agende uma Visita
+                Ver todos os curso
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
@@ -135,34 +135,34 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-blue-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">98%</p>
-              <p className="text-sm sm:text-base text-gray-600">Taxa de Aprovação</p>
+            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">98%</p>
+              <p className="text-sm sm:text-base text-yellow-600">Taxa de Aprovação</p>
             </div>
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">2000+</p>
-              <p className="text-sm sm:text-base text-gray-600">Alunos Formados</p>
+            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">2000+</p>
+              <p className="text-sm sm:text-base text-yellow-600">Alunos Formados</p>
             </div>
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">50+</p>
-              <p className="text-sm sm:text-base text-gray-600">Professores PhD</p>
+            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">50+</p>
+              <p className="text-sm sm:text-base text-yellow-600">Professores</p>
             </div>
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">15</p>
-              <p className="text-sm sm:text-base text-gray-600">Anos de Excelência</p>
+            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">15</p>
+              <p className="text-sm sm:text-base text-yellow-600">Anos de Excelência</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-gradient-to-r from-purple-600  to-yellow-500">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Por que escolher o FC-Saber?</h2>
+            <h2 className="text-4xl font-bold mb-4 text-purple-700">Por que escolher o CF-Saber?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Oferecemos uma formação completa e moderna, preparando profissionais 
               para os desafios da educação contemporânea.
@@ -186,10 +186,10 @@ export default function Home() {
                 description: "Abordagem moderna integrando tecnologia e métodos tradicionais."
               }
             ].map((feature, index) => (
-              <Card key={index} className="p-8 hover:shadow-lg transition-shadow">
-                <div className="text-blue-600 mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+              <Card key={index} className="p-8 hover:shadow-lg transition-shadow bg-purple-700">
+                <div className="text-yellow-600 mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2 text-white">{feature.title}</h3>
+                <p className="text-white">{feature.description}</p>
               </Card>
             ))}
           </div>
@@ -197,20 +197,20 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-20 text-white">
+      <section className="bg-gradient-to-r from-purple-600  to-yellow-500 py-20 text-white ">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Comece Sua Jornada Hoje</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Transforme-se em um educador de excelência com o FC-Saber.
+          <h2 className="text-4xl font-bold mb-6 text-purple-600">Comece Sua Jornada Hoje</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-600">
+            Transforme-se em um educador de excelência com o CF-Saber.
           </p>
-          <Button size="lg" variant="outline" className="text-black border-white hover:bg-white hover:text-blue-600">
+          <Button size="lg" variant="outline" className="text-yellow-600  bg-purple-600 hover:bg-purple-800 hover:text-yellow-500">
             Saiba Mais <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </section>
 
       {/* Location Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-purple-600">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Nossa Localização</h2>

@@ -1,6 +1,6 @@
 'use client';
-import React, { useState } from 'react';
-import CourseDetailsSidebar from '@/components/CourseDetailsSidebar';
+import React from 'react';
+import CourseCard from '@/components/CourseCard';
 
 interface Course {
   id: number;
@@ -84,22 +84,10 @@ const CoursesPage = () => {
     },
   ];
 
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const openSidebar = (course: Course) => {
-    setSelectedCourse(course);
-    setIsSidebarOpen(true);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
   return (
     <div className="container mx-auto py-12">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-semibold" aria-level={1}>Cursos</h1>
+        <h1 className="text-3xl font-semibold" aria-level={1} id="courses-title" aria-labelledby="courses-title">Cursos</h1>
         <div className="flex items-center">
           <input
             type="text"
@@ -128,58 +116,15 @@ const CoursesPage = () => {
           </span>
         </div>
       </div>
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" aria-label="Lista de Cursos">
         {courses.map((course) => (
-          <li
+          <CourseCard
             key={course.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
-            aria-labelledby={`course-title-${course.id}`}
-            aria-describedby={`course-short-description-${course.id}`}
-            role="listitem"
-            aria-label={`Curso ${course.title}. ${course.description.substring(0, 50)}...`}
-            aria-posinset={courses.indexOf(course) + 1}
-            aria-setsize={courses.length}
-          >
-            <img src={course.imageUrl} alt={course.title} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h2
-                id={`course-title-${course.id}`}
-                className="text-xl font-semibold mb-2"
-                role="heading"
-                aria-level={2}
-              >
-                {course.title}
-              </h2>
-              <p
-                id={`course-short-description-${course.id}`}
-                className="text-gray-500 text-sm"
-              >
-                {course.description.substring(0, 50)}...
-              </p>
-              <span id={`course-long-description-${course.id}`} className="sr-only">
-                {course.description} Saiba mais e matricule-se!
-              </span>
-              <div className="flex items-center justify-between">
-                <span className="text-purple-600 font-bold">{course.price}</span>
-                <button
-                  onClick={() => openSidebar(course)}
-                  className="bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition-colors"
-                  aria-label={`Matricule-se no curso ${course.title}`}
-                  aria-describedby={`course-long-description-${course.id}`}
-                >
-                  Matricule-se
-                </button>
-              </div>
-            </div>
-          </li>
+            title={course.title}
+            description={course.description}
+          />
         ))}
       </ul>
-      {isSidebarOpen && selectedCourse && (
-        <CourseDetailsSidebar
-          onClose={closeSidebar}
-          course={selectedCourse}
-        />
-      )}
     </div>
   );
 };

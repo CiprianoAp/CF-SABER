@@ -20,7 +20,7 @@ import {
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'FC-Saber - Curso de Agregação Pedagógica',
+  title: 'CF-Saber - Curso de Agregação Pedagógica',
   description: 'Centro de formação pedagógica de excelência',
 };
 
@@ -65,7 +65,7 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
           <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <Link href="/" className="text-xl font-bold text-purple-600 hover:text-blue-600 transition-colors">
-              FC-Saber
+              CF-Saber
             </Link>
             
             {/* Desktop Navigation */}
@@ -140,6 +140,14 @@ export default function RootLayout({
                     <Link href="#" legacyBehavior passHref>
                       <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gray-600 hover:text-yellow-500 transition-colors font-medium">
                         Contato
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+
+                  <NavigationMenuItem>
+                    <Link href="#" legacyBehavior passHref>
+                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gray-600 hover:text-yellow-500 transition-colors font-medium">
+                        Parceiros
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -221,6 +229,12 @@ export default function RootLayout({
                     className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
                   >
                     Contato
+                  </Link>
+                  <Link
+                    href="#"
+                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                  >
+                    Parceiros
                   </Link>
                   <Button className="w-full mt-4">
                     <LogIn className="h-4 w-4 mr-2" />
