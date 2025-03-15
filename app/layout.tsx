@@ -16,6 +16,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { Toaster } from "sonner";
+import { NavLink } from "@/components/ui/nav-link";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,25 +35,25 @@ export default function RootLayout({
     <html lang="pt">
       <body className={inter.className}>
         {/* Top Info Bar */}
-        <div className="bg-purple-600 text-white py-2 hidden md:block">
+        <div className="bg-gradient-to-r from-purple-600 to-yellow-500 text-white py-2 hidden md:block animate-gradient">
           <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
             <div className="flex items-center space-x-4">
-              <span className="flex items-center">
+              <span className="flex items-center hover-lift">
                 <Mail className="h-4 w-4 mr-2" />
                 infor-cfsaber@gmail.com
               </span>
-              <span className="flex items-center">
+              <span className="flex items-center hover-lift">
                 <Phone className="h-4 w-4 mr-2" />
                 +244 936321139
               </span>
             </div>
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-4">
-                <span className="flex items-center">
+                <span className="flex items-center hover-lift">
                   <MapPin className="h-4 w-4 mr-2" />
                   Talatona, Luanda-Angola
                 </span>
-                <span className="flex items-center">
+                <span className="flex items-center hover-lift">
                   <Clock className="h-4 w-4 mr-2" />
                   Seg-Sex: 9:00 - 18:00
                 </span>
@@ -62,9 +64,9 @@ export default function RootLayout({
         </div>
 
         {/* Main Header */}
-        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 glass">
           <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <Link href="/" className="text-xl font-bold text-purple-600 hover:text-blue-600 transition-colors">
+            <Link href="/" className="text-xl font-bold text-gradient hover-scale">
               CF-Saber
             </Link>
             
@@ -73,23 +75,23 @@ export default function RootLayout({
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger>Sobre</NavigationMenuTrigger>
-                    <NavigationMenuContent className="bg-purple-600">
+                    <NavigationMenuTrigger className="text-gradient">Sobre</NavigationMenuTrigger>
+                    <NavigationMenuContent className="bg-gradient-to-r from-purple-600 to-yellow-500 animate-gradient">
                       <div className="grid gap-3 p-6 w-[400px]">
                         <div className="grid grid-cols-2 gap-4">
-                          <Link href="#" className="group block space-y-2 p-4 rounded-lg hover:bg-yellow-500">
+                          <Link href="/sobre" className="group block space-y-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-300">
                             <div className="flex items-center gap-2 text-white">
                               <GraduationCap className="h-5 w-5" />
                               <span className="font-medium">Nossa História</span>
                             </div>
-                            <p className="text-sm text-purple-900">Conheça nossa trajetória e missão na educação.</p>
+                            <p className="text-sm text-white/90">Conheça nossa trajetória e missão na educação.</p>
                           </Link>
-                          <Link href="#" className="group block space-y-2 p-4 rounded-lg hover:bg-yellow-500">
+                          <Link href="/sobre#equipe" className="group block space-y-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-300">
                             <div className="flex items-center gap-2 text-white">
                               <Users className="h-5 w-5" />
                               <span className="font-medium">Equipe</span>
                             </div>
-                            <p className="text-sm text-purple-900">Nossa equipe de profissionais qualificados.</p>
+                            <p className="text-sm text-white/90">Nossa equipe de profissionais qualificados.</p>
                           </Link>
                         </div>
                       </div>
@@ -97,23 +99,23 @@ export default function RootLayout({
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger>Programa</NavigationMenuTrigger>
-                    <NavigationMenuContent className='bg-purple-600'>
+                    <NavigationMenuTrigger className="text-gradient">Programa</NavigationMenuTrigger>
+                    <NavigationMenuContent className="bg-gradient-to-r from-purple-600 to-yellow-500 animate-gradient">
                       <div className="grid gap-3 p-6 w-[400px]">
                         <div className="grid grid-cols-2 gap-4">
-                          <Link href="#" className="group block space-y-2 p-4 rounded-lg hover:bg-yellow-500">
+                          <Link href="/programa" className="group block space-y-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-300">
                             <div className="flex items-center gap-2 text-white">
                               <BookOpen className="h-5 w-5" />
                               <span className="font-medium">Currículo</span>
                             </div>
-                            <p className="text-sm text-purple-900">Estrutura curricular e disciplinas.</p>
+                            <p className="text-sm text-white/90">Estrutura curricular e disciplinas.</p>
                           </Link>
-                          <Link href="#" className="group block space-y-2 p-4 rounded-lg hover:bg-yellow-500">
+                          <Link href="/programa#calendario" className="group block space-y-2 p-4 rounded-lg hover:bg-white/20 transition-all duration-300">
                             <div className="flex items-center gap-2 text-white">
                               <Calendar className="h-5 w-5" />
                               <span className="font-medium">Calendário</span>
                             </div>
-                            <p className="text-sm text-purple-900">Datas importantes e cronograma.</p>
+                            <p className="text-sm text-white/90">Datas importantes e cronograma.</p>
                           </Link>
                         </div>
                       </div>
@@ -122,32 +124,40 @@ export default function RootLayout({
 
                   <NavigationMenuItem>
                     <Link href="/cursos" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gray-600 hover:text-yellow-500 transition-colors font-medium">
+                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gradient hover:scale-105 transition-all duration-300 font-medium">
                         Cursos
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gray-600 hover:text-yellow-500 transition-colors font-medium">
+                    <Link href="/docentes" legacyBehavior passHref>
+                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gradient hover:scale-105 transition-all duration-300 font-medium">
                         Docentes
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gray-600 hover:text-yellow-500 transition-colors font-medium">
+                    <Link href="/contato" legacyBehavior passHref>
+                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gradient hover:scale-105 transition-all duration-300 font-medium">
                         Contato
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
 
                   <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gray-600 hover:text-yellow-500 transition-colors font-medium">
+                    <Link href="/parceiros" legacyBehavior passHref>
+                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gradient hover:scale-105 transition-all duration-300 font-medium">
                         Parceiros
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+
+                  <NavigationMenuItem>
+                    <Link href="/noticias" legacyBehavior passHref>
+                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-gradient hover:scale-105 transition-all duration-300 font-medium">
+                        Notícias
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -157,7 +167,7 @@ export default function RootLayout({
               <div className="flex items-center gap-4">
                 <LanguageSelector />
                 <Button
-                  className="bg-yellow-500 text-purple-600 hover:bg-yellow-600 transition-colors"
+                  className="bg-gradient-to-r from-purple-600 to-yellow-500 text-white hover:from-purple-700 hover:to-yellow-600 transition-all duration-300 button-glow"
                 >
                   <LogIn className="h-4 w-4 mr-2" />
                   Área do Aluno
@@ -168,25 +178,25 @@ export default function RootLayout({
             {/* Mobile Navigation */}
             <Sheet>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="hover:scale-110 transition-transform">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] glass">
                 <nav className="flex flex-col gap-4">
                   <div className="border-b pb-4 mb-4">
                     <h4 className="text-sm font-medium text-gray-500 mb-2">Contato</h4>
                     <div className="space-y-3">
-                      <p className="flex items-center text-sm">
+                      <p className="flex items-center text-sm hover-lift">
                         <Mail className="h-4 w-4 mr-2" />
                         contato@fc-saber.pt
                       </p>
-                      <p className="flex items-center text-sm">
+                      <p className="flex items-center text-sm hover-lift">
                         <Phone className="h-4 w-4 mr-2" />
                         +351 123 456 789
                       </p>
-                      <p className="flex items-center text-sm">
+                      <p className="flex items-center text-sm hover-lift">
                         <MapPin className="h-4 w-4 mr-2" />
                         Lisboa, Portugal
                       </p>
@@ -201,42 +211,48 @@ export default function RootLayout({
                     <LanguageSelector />
                   </div>
                   <Link
-                    href="#"
-                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                    href="/sobre"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
                   >
                     Sobre
                   </Link>
                   <Link
-                    href="#"
-                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                    href="/programa"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
                   >
                     Programa
                   </Link>
                   <Link
                     href="/cursos"
-                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
                   >
                     Cursos
                   </Link>
                   <Link
-                    href="#"
-                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                    href="/docentes"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
                   >
                     Docentes
                   </Link>
                   <Link
-                    href="#"
-                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                    href="/contato"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
                   >
                     Contato
                   </Link>
                   <Link
-                    href="#"
-                    className="block px-2 py-1 text-lg hover:text-yellow-500 transition-colors"
+                    href="/parceiros"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
                   >
                     Parceiros
                   </Link>
-                  <Button className="w-full mt-4">
+                  <Link
+                    href="/noticias"
+                    className="block px-2 py-1 text-lg text-gradient hover:scale-105 transition-all duration-300"
+                  >
+                    Notícias
+                  </Link>
+                  <Button className="w-full mt-4 bg-gradient-to-r from-purple-600 to-yellow-500 text-white hover:from-purple-700 hover:to-yellow-600 transition-all duration-300 button-glow">
                     <LogIn className="h-4 w-4 mr-2" />
                     Área do Aluno
                   </Button>
@@ -246,27 +262,28 @@ export default function RootLayout({
           </nav>
         </header>
         {children}
-        <footer className="bg-gray-900 text-white py-12">
+        <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-12 animate-gradient">
           <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4">FC-Saber</h3>
+              <h3 className="text-lg font-semibold mb-4 text-gradient">FC-Saber</h3>
               <p className="text-gray-400 mb-6">
                 Excelência em formação pedagógica desde 2025.
               </p>
               <SocialIcons variant="white" className="mt-4" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
+              <h3 className="text-lg font-semibold mb-4 text-gradient">Links Rápidos</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link href="#" className="hover:text-white transition-colors">Início</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Sobre</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Programa</Link></li>
-                 <li><Link href="#" className="hover:text-white transition-colors">Cursos</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Contato</Link></li>
+                <li><Link href="/" className="hover:text-white transition-colors hover-lift">Início</Link></li>
+                <li><Link href="/sobre" className="hover:text-white transition-colors hover-lift">Sobre</Link></li>
+                <li><Link href="/programa" className="hover:text-white transition-colors hover-lift">Programa</Link></li>
+                <li><Link href="/cursos" className="hover:text-white transition-colors hover-lift">Cursos</Link></li>
+                <li><Link href="/noticias" className="hover:text-white transition-colors hover-lift">Notícias</Link></li>
+                <li><Link href="/contato" className="hover:text-white transition-colors hover-lift">Contato</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Contato</h3>
+              <h3 className="text-lg font-semibold mb-4 text-gradient">Contato</h3>
               <address className="text-gray-400 not-italic">
                 Talatona, Luanda-Angola<br />
                 Luanda, Angola<br />
@@ -280,6 +297,7 @@ export default function RootLayout({
           </div>
         </footer>
         <WhatsAppButton />
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

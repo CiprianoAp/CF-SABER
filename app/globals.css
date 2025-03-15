@@ -19,24 +19,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: #800080; /* lilla */
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: #800080; /* lilla */
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: #800080; /* lilla */
-    --primary: #800080; /* lilla */
-    --primary-foreground: #FFFF00; /* amarelo */
-    --secondary: #FFFF00; /* amarelo */
-    --secondary-foreground: #800080; /* lilla */
-    --muted: 271 81% 97%;
-    --muted-foreground: 271 81% 45%;
-    --accent: #FFFF00; /* amarelo */
-    --accent-foreground: #800080; /* lilla */
-    --destructive: 271 81% 45%;
-    --destructive-foreground: #FFFF00; /* amarelo */
-    --border: 271 81% 90%;
-    --input: 271 81% 90%;
-    --ring: #800080; /* lilla */
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
     --chart-1: 271 81% 45%;
     --chart-2: #FFFF00; /* amarelo */
     --chart-3: 271 81% 35%;
@@ -45,25 +45,25 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: #800080; /* lilla */
-    --foreground: #FFFF00; /* amarelo */
-    --card: #800080; /* lilla */
-    --card-foreground: #FFFF00; /* amarelo */
-    --popover: #800080; /* lilla */
-    --popover-foreground: #FFFF00; /* amarelo */
-    --primary: #FFFF00; /* amarelo */
-    --primary-foreground: #800080; /* lilla */
-    --secondary: 271 81% 35%;
-    --secondary-foreground: #FFFF00; /* amarelo */
-    --muted: 271 81% 35%;
-    --muted-foreground: 47 100% 80%;
-    --accent: #FFFF00; /* amarelo */
-    --accent-foreground: #800080; /* lilla */
-    --destructive: 271 81% 45%;
-    --destructive-foreground: #FFFF00; /* amarelo */
-    --border: 271 81% 35%;
-    --input: 271 81% 35%;
-    --ring: #FFFF00; /* amarelo */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 263.4 70% 50.4%;
     --chart-1: 271 81% 60%;
     --chart-2: #FFFF00; /* amarelo */
     --chart-3: 271 81% 45%;
@@ -308,4 +308,246 @@
 
 .animation-delay-400 {
   animation-delay: 0.4s;
+}
+
+/* Partners Carousel Styles */
+.partners-swiper {
+  padding: 2rem 3rem;
+  overflow: visible;
+}
+
+.partners-swiper .swiper-slide {
+  height: auto;
+  padding: 0.5rem;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: all 0.3s ease;
+}
+
+.partners-swiper .swiper-slide-active {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.partners-swiper .swiper-slide-active .bg-white\/10 {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.partners-swiper .swiper-button-next,
+.partners-swiper .swiper-button-prev {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.partners-swiper .swiper-button-next:hover,
+.partners-swiper .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.partners-swiper .swiper-button-next:after,
+.partners-swiper .swiper-button-prev:after {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.partners-swiper .swiper-button-prev {
+  left: 0;
+}
+
+.partners-swiper .swiper-button-next {
+  right: 0;
+}
+
+.partners-swiper .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.5;
+  width: 8px;
+  height: 8px;
+  transition: all 0.3s ease;
+}
+
+.partners-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Animações Globais */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Classes de Animação */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Efeitos de Hover */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradientes Animados */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Efeitos de Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Efeitos de Texto */
+.text-gradient {
+  background: linear-gradient(45deg, #9333ea, #eab308);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Efeitos de Card */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Efeitos de Botão */
+.button-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: buttonGlow 3s linear infinite;
+}
+
+@keyframes buttonGlow {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9333ea;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7e22ce;
 }

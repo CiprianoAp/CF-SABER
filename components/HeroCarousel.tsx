@@ -1,196 +1,94 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { PexelsImage } from './PexelsImage';
+import Link from "next/link";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const slides = [
   {
-    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
-    title: 'Formando os Educadores do Futuro',
-    description: 'O Curso de Agregação Pedagógica do FC-Saber é reconhecido pela excelência e inovação na formação de profissionais da educação.',
-    cta: {
-      primary: 'Inscreva-se Agora',
-      secondary: 'Conheça o Programa'
-    }
+    image: "https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg",
+    title: "Formação de Excelência",
+    description: "Prepare-se para os desafios da educação moderna com nossa metodologia inovadora.",
+    cta: "Conheça Nossos Cursos",
+    link: "/cursos"
   },
   {
-    image: 'https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg',
-    title: 'Metodologia Inovadora',
-    description: 'Aprenda com os melhores profissionais e desenvolva habilidades essenciais para a educação moderna.',
-    cta: {
-      primary: 'Comece Hoje',
-      secondary: 'Saiba Mais'
-    }
+    image: "https://images.pexels.com/photos/3184461/pexels-photo-3184461.jpeg",
+    title: "Metodologia Inovadora",
+    description: "Aprenda com os melhores e desenvolva habilidades essenciais para o ensino.",
+    cta: "Saiba Mais",
+    link: "/sobre"
   },
   {
-    image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg',
-    title: 'Experiência Transformadora',
-    description: 'Uma jornada de aprendizado que vai muito além da sala de aula.',
-    cta: {
-      primary: 'Faça Parte',
-      secondary: 'Agende uma Visita'
-    }
+    image: "https://images.pexels.com/photos/3184462/pexels-photo-3184462.jpeg",
+    title: "Futuro da Educação",
+    description: "Transforme sua carreira e faça a diferença na vida dos seus alunos.",
+    cta: "Comece Agora",
+    link: "/contato"
   }
 ];
 
 export function HeroCarousel() {
-  const [mounted, setMounted] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // 768px é o breakpoint para tablets
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  if (!mounted) return null;
-
-  // Versão mobile - mostra apenas o primeiro slide de forma estática
-  if (isMobile) {
-    const firstSlide = slides[0];
-    return (
-      <div className="relative w-full h-[100svh]">
-        <PexelsImage
-          src={firstSlide.image}
-          alt={firstSlide.title}
-          className="brightness-[0.65]"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-purple-600 mb-4 animate-fade-in">
-                {firstSlide.title}
-              </h2>
-              <p className="text-base text-purple-600 mb-8 animate-fade-in animation-delay-200 max-w-3xl mx-auto">
-                {firstSlide.description}
-              </p>
-              <div className="flex flex-col gap-4 animate-fade-in animation-delay-400">
-                <Button 
-                  variant="default" 
-                  size="lg"
-                  className="w-full bg-[#FFD700] text-[#4B0082] hover:bg-[#FFD700]/90 transition-all duration-300 
-                           text-base px-6 py-5 rounded-full shadow-[0_4px_14px_0_rgba(75,0,130,0.2)] hover:shadow-[0_6px_20px_rgba(75,0,130,0.3)] 
-                           hover:scale-105 font-medium"
-                >
-                  {firstSlide.cta.primary}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="w-full border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#4B0082]/30 
-                           transition-all duration-300 text-base px-6 py-5 rounded-full 
-                           shadow-[0_4px_14px_0_rgba(255,215,0,0.2)] hover:shadow-[0_6px_20px_rgba(255,215,0,0.3)]
-                           hover:scale-105 backdrop-blur-sm font-medium"
-                >
-                  {firstSlide.cta.secondary}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Versão desktop - carrossel completo
   return (
-    <div className="relative w-full h-full">
-      <Swiper
-        modules={[Autoplay, Navigation, Pagination, EffectFade]}
-        effect="fade"
-        fadeEffect={{
-          crossFade: true
-        }}
-        speed={1000}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-          renderBullet: (index, className) => {
-            return `<span class="${className} relative w-12 h-1 bg-[#4B0082]/30 hover:bg-[#4B0082]/50 transition-all duration-300 rounded-full overflow-hidden">
-              <span class="absolute inset-0 bg-[#FFD700] transform origin-left transition-transform duration-500 ${index === activeIndex ? 'scale-x-100' : 'scale-x-0'}"></span>
-            </span>`;
-          },
-        }}
-        navigation={{
-          prevEl: '.swiper-button-prev',
-          nextEl: '.swiper-button-next',
-        }}
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        loop={true}
-        className="w-full h-full [&_.swiper-slide]:z-10 [&_.swiper-slide-active]:z-20"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="relative h-screen">
-            <PexelsImage
-              src={slide.image}
-              alt={slide.title}
-              className="brightness-[0.65]"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="container mx-auto px-4 text-center">
-                <div className="max-w-4xl mx-auto">
-                  <h2 className="text-4xl md:text-6xl font-bold text-purple-600 mb-6 opacity-0 slide-title">
+    <Swiper
+      modules={[Autoplay, Pagination, Navigation]}
+      spaceBetween={0}
+      slidesPerView={1}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
+      pagination={{
+        clickable: true,
+        renderBullet: (index, className) => {
+          return `<span class="${className} custom-bullet"></span>`;
+        },
+      }}
+      navigation={true}
+      className="h-full"
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide key={index} className="relative">
+          <div className="relative h-[80vh] w-full">
+            {/* Background Image with Overlay */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${slide.image})` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-purple-900/40" />
+            </div>
+
+            {/* Content */}
+            <div className="relative h-full flex items-center">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className="max-w-2xl">
+                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-title">
                     {slide.title}
-                  </h2>
-                  <p className="text-lg md:text-xl text-purple-600 mb-10 opacity-0 slide-description max-w-3xl mx-auto">
+                  </h1>
+                  <p className="text-xl md:text-2xl text-white/90 mb-8 animate-description">
                     {slide.description}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-6 opacity-0 slide-cta justify-center">
+                  <Link href={slide.link}>
                     <Button 
-                      variant="default" 
-                      size="lg"
-                      className="bg-[#FFD700] text-[#4B0082] hover:bg-[#FFD700]/90 transition-all duration-300 
-                               text-lg px-8 py-6 rounded-full shadow-[0_4px_14px_0_rgba(75,0,130,0.2)] hover:shadow-[0_6px_20px_rgba(75,0,130,0.3)]
-                               hover:scale-105 font-medium"
+                      size="lg" 
+                      className="bg-white text-purple-900 hover:bg-white/90 transition-all duration-300 animate-cta"
                     >
-                      {slide.cta.primary}
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      {slide.cta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      size="lg"
-                      className="border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#4B0082]/30 
-                               transition-all duration-300 text-lg px-8 py-6 rounded-full 
-                               shadow-[0_4px_14px_0_rgba(255,215,0,0.2)] hover:shadow-[0_6px_20px_rgba(255,215,0,0.3)]
-                               hover:scale-105 backdrop-blur-sm font-medium"
-                    >
-                      {slide.cta.secondary}
-                    </Button>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-
-        {/* Custom Navigation Buttons */}
-        <div className="swiper-button-prev !text-[#FFD700] !w-14 !h-14 !bg-[#4B0082]/50 rounded-full 
-                      backdrop-blur-sm transition-all duration-300 hover:!bg-[#4B0082]/70
-                      after:!text-2xl hover:scale-110 !opacity-50 hover:!opacity-100"></div>
-        <div className="swiper-button-next !text-[#FFD700] !w-14 !h-14 !bg-[#4B0082]/50 rounded-full 
-                      backdrop-blur-sm transition-all duration-300 hover:!bg-[#4B0082]/70
-                      after:!text-2xl hover:scale-110 !opacity-50 hover:!opacity-100"></div>
-      </Swiper>
-    </div>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }

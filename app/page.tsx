@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { 
   Navigation, 
   GraduationCap, 
@@ -16,253 +18,593 @@ import {
   Phone,
   Play,
   ChevronRight,
-  Eye
+  Eye,
+  Star,
+  Trophy,
+  BookMarked,
+  Heart,
+  ArrowUp
 } from "lucide-react";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { YouTubeVideo } from '@/components/YouTubeVideo';
+import { InfiniteCarousel } from '@/components/InfiniteCarousel';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { CourseDrawer } from "@/components/CourseDrawer";
+
+interface Course {
+  title: string;
+  description: string;
+  image: string;
+  duration: string;
+  level: string;
+  students: string;
+  startDate: string;
+  instructor: string;
+  price: string;
+  objectives: string[];
+  requirements: string[];
+}
 
 export default function Home() {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const stats = [
+    { icon: <GraduationCap className="w-6 h-6" />, value: "1000+", label: "Alunos Formados" },
+    { icon: <BookOpen className="w-6 h-6" />, value: "50+", label: "Cursos Disponíveis" },
+    { icon: <Users className="w-6 h-6" />, value: "30+", label: "Professores" },
+    { icon: <Award className="w-6 h-6" />, value: "95%", label: "Taxa de Aprovação" },
+  ];
+
+  const courses = [
+    {
+      title: "Agregação Pedagógica",
+      description: "Formação completa para docentes que desejam lecionar no ensino superior",
+      image: "/images/courses/course-1.jpg",
+      duration: "6 meses",
+      level: "Avançado",
+      students: "250+",
+      startDate: "15 de Março, 2024",
+      instructor: "Dr. Manuel Silva",
+      price: "150.000 Kz",
+      objectives: [
+        "Desenvolver competências pedagógicas avançadas",
+        "Dominar metodologias de ensino superior",
+        "Aprender técnicas de avaliação moderna",
+        "Criar planos de aula efetivos"
+      ],
+      requirements: [
+        "Licenciatura concluída",
+        "Experiência prévia em docência (desejável)",
+        "Disponibilidade para aulas presenciais",
+        "Computador com acesso à internet"
+      ]
+    },
+    {
+      title: "Metodologias Ativas",
+      description: "Aprenda técnicas modernas de ensino e aprendizagem para engajar seus alunos",
+      image: "/images/courses/course-2.jpg",
+      duration: "3 meses",
+      level: "Intermediário",
+      students: "180+",
+      startDate: "1 de Abril, 2024",
+      instructor: "Profa. Ana Santos",
+      price: "75.000 Kz",
+      objectives: [
+        "Implementar metodologias ativas em sala",
+        "Criar experiências de aprendizado envolventes",
+        "Utilizar tecnologias educacionais",
+        "Desenvolver projetos práticos"
+      ],
+      requirements: [
+        "Formação em educação",
+        "Conhecimentos básicos de informática",
+        "Interesse em inovação pedagógica",
+        "Disponibilidade para práticas"
+      ]
+    },
+    {
+      title: "Tecnologias Educacionais",
+      description: "Domine as ferramentas digitais para transformar sua prática pedagógica",
+      image: "/images/courses/course-3.jpg",
+      duration: "4 meses",
+      level: "Intermediário",
+      students: "200+",
+      startDate: "10 de Abril, 2024",
+      instructor: "Prof. João Costa",
+      price: "85.000 Kz",
+      objectives: [
+        "Dominar ferramentas digitais educacionais",
+        "Criar conteúdo digital interativo",
+        "Gerenciar ambientes virtuais de aprendizagem",
+        "Implementar avaliações online"
+      ],
+      requirements: [
+        "Conhecimentos básicos de informática",
+        "Acesso a computador e internet",
+        "Interesse em tecnologia",
+        "Disponibilidade para práticas online"
+      ]
+    }
+  ];
+
   return (
-    <main>
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[600px] h-screen">
-        <HeroCarousel />
-      </section>
-
-      {/* Missão, Visão, Valores Section */}
-      <section className="py-12 bg-purple-600 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-yellow-500 sm:text-4xl">
-              Conheça o que nos guia.
-            </h2>
-          </div>
-          <div className="mt-10">
-            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
-              <div className="relative">
-                <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md text-white bg-yellow-500">
-                    {/* Icon */}
-                    <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-white">Missão</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-yellow-500">Formar educadores inovadores e comprometidos com a excelência no ensino.</dd>
-              </div>
-
-              <div className="relative">
-                <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md text-white bg-yellow-500">
-                    {/* Icon */}
-                    <Eye className="h-6 w-6" />
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-white">Visão</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-yellow-500">Ser referência nacional em educação, reconhecida pela inovação e impacto social.</dd>
-              </div>
-
-              <div className="relative">
-                <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md text-white bg-yellow-500">
-                    {/* Icon */}
-                    <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-white">Valores</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-yellow-500">Ética, compromisso, inovação, excelência e respeito à diversidade.</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* Video Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden bg-yellow-500">
-        {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-white to-yellow-50/50" />
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
-          <div className="absolute top-0 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
-          <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-block">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-600 text-yellow-500 mb-4">
-                <Play className="w-4 h-4 mr-2" />
-                Metodologia Exclusiva
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-600 to-purple-600 text-transparent bg-clip-text">
-              Conheça Nossa Metodologia
-            </h2>
-            <p className="text-lg md:text-xl text-purple-600  max-w-2xl mx-auto leading-relaxed">
-              Descubra como nossa abordagem inovadora está transformando 
-              a formação de educadores em todo o país.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto relative">
-            {/* Video Container */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
-              <YouTubeVideo 
-                videoId="oe823QDBUic"
-                className="shadow-[0_20px_50px_rgba(8,_112,_184,_0.2)]"
-              />
-            </div>
-
-            {/* Call to action below video */}
-            <div className="mt-12 text-center">
-              <p className="text-gray-600 mb-4">
-                Quer saber mais sobre nossos cursos?
-              </p>
-              <Button 
-                variant="outline"
-                className="inline-flex items-center text-yellow-400 gap-2 bg-purple-600  border-blue-200 hover:bg-purple-700 transition-all duration-300"
-              >
-                Ver todos os curso
-                <ChevronRight className="w-4 h-4" />
+      <section className="relative h-[90vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/95 to-yellow-900/95 z-10" />
+        <Image
+          src="/images/hero-bg.jpg"
+          alt="Ambiente educacional moderno"
+          fill
+          className="object-cover object-center scale-105"
+          priority
+        />
+        
+        <div className="container mx-auto px-4 relative z-20">
+          <div className="max-w-3xl">
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Transforme seu Futuro com Educação de Qualidade
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-gray-200 mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Desenvolva suas habilidades pedagógicas e alcance novos patamares em sua carreira docente com nossos cursos especializados.
+            </motion.p>
+            <motion.div 
+              className="flex gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
+                Começar Agora
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-            </div>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                Conhecer Cursos
+              </Button>
+            </motion.div>
           </div>
         </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-20" />
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
-            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">98%</p>
-              <p className="text-sm sm:text-base text-yellow-600">Taxa de Aprovação</p>
-            </div>
-            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">2000+</p>
-              <p className="text-sm sm:text-base text-yellow-600">Alunos Formados</p>
-            </div>
-            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">50+</p>
-              <p className="text-sm sm:text-base text-yellow-600">Professores</p>
-            </div>
-            <div className="bg-purple-700 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <p className="text-3xl sm:text-4xl font-bold text-yellow-600 mb-2">15</p>
-              <p className="text-sm sm:text-base text-yellow-600">Anos de Excelência</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-purple-600  to-yellow-500">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-purple-700">Por que escolher o CF-Saber?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Oferecemos uma formação completa e moderna, preparando profissionais 
-              para os desafios da educação contemporânea.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <GraduationCap className="h-8 w-8" />,
-                title: "Excelência Acadêmica",
-                description: "Programa reconhecido internacionalmente pela qualidade do ensino."
-              },
-              {
-                icon: <Target className="h-8 w-8" />,
-                title: "Foco Prático",
-                description: "Metodologia baseada em casos reais e experiências práticas."
-              },
-              {
-                icon: <Lightbulb className="h-8 w-8" />,
-                title: "Inovação Pedagógica",
-                description: "Abordagem moderna integrando tecnologia e métodos tradicionais."
-              }
-            ].map((feature, index) => (
-              <Card key={index} className="p-8 hover:shadow-lg transition-shadow bg-purple-700">
-                <div className="text-yellow-600 mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{feature.title}</h3>
-                <p className="text-white">{feature.description}</p>
-              </Card>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                    {stat.icon}
+                  </div>
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</h3>
+                <p className="text-gray-600">{stat.label}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-purple-600  to-yellow-500 py-20 text-white ">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 text-purple-600">Comece Sua Jornada Hoje</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-600">
-            Transforme-se em um educador de excelência com o CF-Saber.
-          </p>
-          <Button size="lg" variant="outline" className="text-yellow-600  bg-purple-600 hover:bg-purple-800 hover:text-yellow-500">
-            Saiba Mais <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+      {/* Featured Courses */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-purple-600 font-semibold mb-2 block">NOSSOS CURSOS</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-yellow-600 bg-clip-text text-transparent">
+              Cursos em Destaque
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore nossos cursos cuidadosamente desenvolvidos para impulsionar sua carreira na educação.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {courses.map((course, index) => (
+              <motion.div
+                key={index}
+                className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <Badge className="bg-purple-600 hover:bg-purple-700 text-white">
+                      {course.level}
+                    </Badge>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 text-gray-800 group-hover:text-purple-600 transition-colors">
+                    {course.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 line-clamp-2">{course.description}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <Clock className="w-4 h-4 mr-1 text-purple-600" />
+                        {course.duration}
+                      </div>
+                      <div className="flex items-center">
+                        <Users className="w-4 h-4 mr-1 text-purple-600" />
+                        {course.students}
+                      </div>
+                    </div>
+                  </div>
+                  <Separator className="my-4" />
+                  <Button 
+                    onClick={() => setSelectedCourse(course)}
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                  >
+                    Ver Detalhes
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {selectedCourse && (
+          <CourseDrawer
+            isOpen={!!selectedCourse}
+            onClose={() => setSelectedCourse(null)}
+            course={selectedCourse}
+          />
+        )}
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gradient-to-br from-purple-900 to-yellow-700 text-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Por que Escolher o CF-Saber?</h2>
+            <p className="text-gray-200 max-w-2xl mx-auto">
+              Oferecemos uma experiência de aprendizado única e transformadora.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Professores Especializados",
+                description: "Nossa equipe é formada por profissionais com vasta experiência acadêmica."
+              },
+              {
+                title: "Metodologia Inovadora",
+                description: "Combinamos teoria e prática em uma abordagem moderna e eficiente."
+              },
+              {
+                title: "Certificação Reconhecida",
+                description: "Nossos certificados são reconhecidos e valorizados no mercado."
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-white/10 backdrop-blur-sm rounded-lg p-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                <p className="text-gray-200">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="py-20 px-4 bg-purple-600">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Nossa Localização</h2>
-            <p className="text-xl text-gray-600">
-              Visite-nos e conheça nossa estrutura moderna e acolhedora
+      {/* Quem Somos Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-4xl mx-auto text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">Quem Somos</h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              O CF-Saber é um centro de formação pedagógica de excelência, dedicado a formar profissionais 
+              da educação com as competências necessárias para enfrentar os desafios do século XXI. 
+              Com uma abordagem inovadora e corpo docente altamente qualificado, preparamos educadores 
+              que farão a diferença na sociedade.
             </p>
-          </div>
+          </motion.div>
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <MapPin className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Endereço</h3>
-                  <p className="text-gray-600">Avenida Samora Machel, Município de Talatona, Luanda-Angola</p>
+            <motion.div
+              className="relative rounded-2xl overflow-hidden shadow-2xl h-[600px]"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Image
+                src="/images/about-us.jpg"
+                alt="Sobre o CF-Saber"
+                fill
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent" />
+            </motion.div>
+
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="flex items-start gap-6">
+                  <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                    <Image
+                      src="/images/about/history.jpg"
+                      alt="Nossa História"
+                      width={80}
+                      height={80}
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-purple-600">Nossa História</h3>
+                    <p className="text-gray-600">
+                      Fundado em 2025, o CF-Saber nasceu da visão de transformar a educação em Angola 
+                      através da formação de professores excepcionais.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <Clock className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Horário de Funcionamento</h3>
-                  <p className="text-gray-600">Segunda a Sexta: 9:00 - 18:00</p>
+
+              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                    <Image
+                      src="/images/about/team.jpg"
+                      alt="Nossa Equipe"
+                      width={64}
+                      height={64}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-purple-600">Nossa Equipe</h3>
+                    <p className="text-gray-600">
+                      Contamos com profissionais altamente qualificados e comprometidos com a 
+                      excelência no ensino e na formação de educadores.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <Phone className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Contato</h3>
-                  <p className="text-gray-600">+244 936321139</p>
-                  <p className="text-gray-600">infor-cfsaber@gmail.com</p>
+
+              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                    <Image
+                      src="/images/about/structure.jpg"
+                      alt="Nossa Estrutura"
+                      width={64}
+                      height={64}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-purple-600">Nossa Estrutura</h3>
+                    <p className="text-gray-600">
+                      Instalações modernas e ambiente propício ao aprendizado, com recursos 
+                      tecnológicos de ponta.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="h-[400px] rounded-xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.550685515454!2d-9.1500887!3d38.7436266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQ0JzM3LjEiTiA5wrAwOScwMC4zIlc!5e0!3m2!1spt-PT!2spt!4v1650000000000!5m2!1spt-PT!2spt"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Missão, Visão e Valores Section */}
+      <section className="py-20 bg-gradient-to-br from-purple-900 to-yellow-700 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossa Identidade</h2>
+            <p className="text-gray-200 max-w-2xl mx-auto">
+              Conheça os pilares que fundamentam nossa instituição e guiam nossas ações.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-6">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Missão</h3>
+              <p className="text-gray-200">
+                Formar educadores inovadores e comprometidos com a excelência no ensino, 
+                preparando-os para os desafios da educação moderna através de uma formação 
+                integral e transformadora.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-6">
+                <Eye className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Visão</h3>
+              <p className="text-gray-200">
+                Ser referência nacional em formação pedagógica até 2030, reconhecida pela 
+                inovação, qualidade e impacto social na educação angolana, formando 
+                educadores que transformam vidas.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-6">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Valores</h3>
+              <ul className="text-gray-200 space-y-2">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  Excelência Acadêmica
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  Inovação Pedagógica
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  Compromisso Social
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  Ética e Transparência
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  Respeito à Diversidade
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  Desenvolvimento Contínuo
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Pronto para Começar sua Jornada?
+            </h2>
+            <p className="text-gray-600 mb-8">
+              Inscreva-se agora e dê o primeiro passo em direção ao seu desenvolvimento profissional.
+            </p>
+            <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white">
+              Inscreva-se Agora
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Scroll to Top Button */}
+      <motion.div
+        className="fixed bottom-32 right-8 z-50"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ 
+          opacity: showScrollTop ? 1 : 0,
+          scale: showScrollTop ? 1 : 0.5,
+          pointerEvents: showScrollTop ? 'auto' : 'none'
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <Button
+          onClick={scrollToTop}
+          size="lg"
+          className="rounded-full w-14 h-14 bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
+        >
+          <ArrowUp className="w-8 h-8 group-hover:-translate-y-1 transition-transform duration-300" />
+        </Button>
+      </motion.div>
+
     </main>
   );
 }
